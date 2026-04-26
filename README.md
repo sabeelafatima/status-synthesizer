@@ -1,165 +1,342 @@
-# Cross-Functional Status Synthesizer
+# \# Cross-Functional Status Synthesizer
 
-> A Power Automate + AI Builder workflow that synthesizes scattered weekly inputs into structured executive status reports for cross-functional program management.
+# 
 
-**Status**: v1 prototype, active build
-**Author**: Sabeela [Last Name]
-**Stack**: Power Automate, AI Builder (GPT prompt action), Microsoft 365 (OneDrive, Outlook, Teams)
+# > An AI tool that synthesizes scattered weekly inputs (meeting notes, Teams threads, ticket data, PM notes) into structured executive status reports for cross-functional program management.
 
----
+# 
 
-## The Problem This Solves
+# \*\*Status\*\*: v1 prototype, deployed
 
-Program Managers running cross-functional hardware or SaaS programs typically draft a weekly status report by reading:
+# \*\*Author\*\*: Sabeela Fatima
 
-- 5-15 meeting notes from working sessions
-- Slack / Teams threads from the prior week
-- Ticket / JIRA updates from engineering and ops
-- Email threads with vendors or partners
-- Their own tracker or RAID log
+# \*\*Stack\*\*: Python, Anthropic Claude API, Streamlit
 
-The synthesis is the actual job. The typing is filler. Most PMs spend 3-5 hours on this every week, and most of that time is mechanical, not analytical.
+# \*\*Live Demo\*\*: \[sabeela-status-synthesize.streamlit.app](https://sabeela-status-synthesize.streamlit.app/)
 
-This workflow automates the mechanical part. A PM drops their inputs into a OneDrive folder (or labels them in Outlook), triggers the flow, and gets back a structured weekly status report formatted for an exec audience, an engineering audience, or an all-hands audience depending on a single parameter.
+# 
 
-## Why AI
+# \---
 
-The simple version of "summarize my notes" is a single ChatGPT prompt. That's a toy.
+# 
 
-The non-trivial version handles:
+# \## The Problem This Solves
 
-1. **Multi-source synthesis**: notes from different meetings about the same workstream get merged, not concatenated.
-2. **Workstream classification**: each input gets tagged (Hardware / Firmware / Manufacturing / Vendor / Risk) so the output groups intelligently.
-3. **Tone calibration**: same underlying facts, three audience-specific outputs.
-4. **Confidence flagging**: items with thin source data get marked "needs verification" rather than padded with confident-sounding filler.
+# 
 
-Those four behaviors are what make this useful instead of decorative.
+# Program Managers running cross-functional hardware programs typically draft a weekly status report by reading:
 
-## Architecture
+# 
 
-```
+# \- 5-15 meeting notes from working sessions
+
+# \- Teams threads from the prior week
+
+# \- Ticket / JIRA updates from engineering and ops
+
+# \- Email threads with vendors or partners
+
+# \- Their own tracker or RAID log
+
+# 
+
+# The synthesis is the actual job. The typing is filler. Most PMs spend 3-5 hours on this every week, and most of that time is mechanical, not analytical.
+
+# 
+
+# This tool automates the mechanical part. A PM provides their inputs, the tool runs them through a 3-stage AI pipeline, and outputs a structured weekly status report tailored for one of three audiences: executive, engineering leads, or all-hands.
+
+# 
+
+# \## Why AI
+
+# 
+
+# The simple version of "summarize my notes" is a single ChatGPT prompt. That's a toy.
+
+# 
+
+# The non-trivial version handles four behaviors:
+
+# 
+
+# 1\. \*\*Multi-source synthesis\*\*: notes from different meetings about the same workstream get merged, not concatenated.
+
+# 2\. \*\*Workstream classification\*\*: each input gets tagged (Hardware / Firmware / Manufacturing / Vendor / Risk / Decision / Win) so the output groups intelligently.
+
+# 3\. \*\*Audience-specific tone\*\*: same underlying facts, three audience-specific renderings.
+
+# 4\. \*\*Confidence flagging\*\*: items with thin source data get marked "needs verification" rather than padded with confident-sounding filler.
+
+# 
+
+# Those four behaviors are what make this useful instead of decorative.
+
+# 
+
+\## Architecture
 ┌──────────────────────────────────────────────────────────────┐
-│                       INPUT SOURCES                          │
-│  OneDrive folder /weekly-status-inputs/                      │
-│   ├── meeting-notes/    (.docx, .txt)                        │
-│   ├── slack-exports/    (.txt)                               │
-│   ├── ticket-summary/   (.csv)                               │
-│   └── pm-notes/         (.txt)                               │
-└─────────────────────┬────────────────────────────────────────┘
-                      │
-                      ▼
-┌──────────────────────────────────────────────────────────────┐
-│             POWER AUTOMATE FLOW (cloud, scheduled)           │
-│                                                              │
-│  Step 1: List + read all files in /weekly-status-inputs/     │
-│  Step 2: Concatenate with source-type tags                   │
-│  Step 3: AI Builder action 1 → workstream classification     │
-│  Step 4: AI Builder action 2 → structured synthesis (JSON)   │
-│  Step 5: AI Builder action 3 → audience-specific rendering   │
-│  Step 6: Compose Word doc + post Teams summary               │
-│  Step 7: Move processed inputs to /archive/{week}/           │
-└─────────────────────┬────────────────────────────────────────┘
-                      │
-                      ▼
-┌──────────────────────────────────────────────────────────────┐
-│                       OUTPUTS                                │
-│  - Word doc in /weekly-status-outputs/{date}-{audience}.docx │
-│  - Teams channel post (exec audience version)                │
-│  - Email draft to PM lead (with edit prompt)                 │
+===
+
+# │                       INPUT SOURCES                          │
+
+# │   ├── meeting-notes/    (.txt)                               │
+
+# │   ├── teams-channels/   (.txt)                               │
+
+# │   ├── ticket-summary/   (.csv)                               │
+
+# │   └── pm-notes/         (.txt)                               │
+
+# └─────────────────────┬────────────────────────────────────────┘
+
+# │
+
+# ▼
+
+# ┌──────────────────────────────────────────────────────────────┐
+
+# │              PYTHON PIPELINE (synthesize.py)                 │
+
+# │                                                              │
+
+# │  Stage 1: AI classification (workstream, confidence)         │
+
+# │  Stage 2: AI synthesis (structured fields, JSON)             │
+
+# │  Stage 3: AI rendering (audience-specific output)            │
+
+# └─────────────────────┬────────────────────────────────────────┘
+
+# │
+
+# ▼
+
+# ┌──────────────────────────────────────────────────────────────┐
+
+# │                       OUTPUTS                                │
+
+# │  - Markdown status report per audience                       │
+
+# │  - Streamlit UI for interactive demo                         │
+
+# │  - Downloadable .md file from the UI                         │
+
 └──────────────────────────────────────────────────────────────┘
-```
 
-**Key design choice**: human-in-the-loop is preserved. The flow drafts and posts as a draft, the PM reviews and sends. The system does not auto-send anything. That separation is the difference between a useful tool and a liability.
+\*\*Key design choice\*\*: human-in-the-loop is preserved. The tool generates a draft, the PM reviews and sends. The system does not auto-send anything. That separation is the difference between a useful tool and a liability.
+===
 
-## Demo Inputs (Synthetic)
+# 
 
-The `samples/` folder contains a complete synthetic week of inputs:
+# \*\*AI fallback\*\*: the tool runs in mock mode (deterministic Python logic, no API calls) when no API key is set. This means anyone can clone the repo and run the demo without credentials.
 
-- 5 meeting notes (kickoff, eng standup, vendor sync, manufacturing review, exec checkin)
-- 1 Slack export (15 messages across 3 channels)
-- 1 ticket summary CSV (12 tickets across statuses)
-- 1 PM personal notes file
+# 
 
-Run the flow against these inputs and you get the three sample outputs in `samples/outputs/`.
+# \## Demo Inputs (Synthetic)
 
-## Sample Output (Exec Audience)
+# 
 
-```
-WEEKLY STATUS REPORT
-Week of 2025-10-13 → 2025-10-19
-Program: Project Atlas (Connected Health Wearable)
-PM: Sabeela [Last Name]
+# The `samples/inputs/` folder contains a complete synthetic week of inputs for a fictional hardware NPI program (Project Atlas):
 
-EXECUTIVE SUMMARY
-PVT pilot build kicked off Wednesday with 47/50 units to spec.
-Sensor yield issue (DFM-013) is the schedule-critical risk;
-mitigation plan reviewed Thursday, decision needed by Monday on
-whether to accept or rework. Vendor MFG-007 quality review
-escalated; supplier visit scheduled for next week.
+# 
 
-KEY RISKS
-- Sensor yield 91% vs 97% target; 1-week potential slip if rework path chosen
-- Vendor MFG-007: 4 quality escapes in last 60d, on-site review needed
-- Display capacity confirmation outstanding for Q1 ramp
+# \- 5 meeting notes (engineering sync, PVT kickoff, vendor sync, manufacturing review, exec checkin)
 
-DECISIONS NEEDED
-- Sensor yield: accept-as-is vs. rework with placement-accuracy fix
-  (decision owner: VP Engineering; deadline Monday)
+# \- 1 Teams channel export (15 messages across 3 channels)
 
-WINS THIS WEEK
-- Firmware download issue (DFM-017) root-caused, fix in test
-- 3 P2 DFM issues closed
-- Procurement confirmed ENC-801 tooling delivery on schedule
+# \- 1 ticket summary CSV (12 tickets across statuses)
 
-LOOKING AHEAD
-- Sensor yield decision Monday
-- MFG-007 supplier visit Wednesday
-- PVT gate review prep begins Thursday
-```
+# \- 1 PM personal notes file
 
-## What's in This Repo
+# 
 
-```
+# Run the pipeline against these and you get sample outputs in `samples/outputs/`.
+
+# 
+
+\## Sample Output (Exec Audience)
+WEEKLY STATUS — Project Atlas — Week of 2025-10-13
+===
+
+# EXECUTIVE SUMMARY
+
+# PVT pilot build kicked off Wednesday with 47 of 50 units to spec on first pass.
+
+# Sensor yield (91% vs. 97% target) is the schedule-critical risk and requires a
+
+# decision on Monday: accept-with-binning or retune placement equipment with
+
+# one-week impact. Vendor MFG-007 quality review escalated to a supplier visit next week.
+
+# KEY RISKS
+
+# 
+
+# Sensor yield 91% vs 97% target; 1-week potential slip if rework path chosen
+
+# Vendor MFG-007: 4 quality escapes in last 60d, on-site review needed
+
+# DisplayWorks Q1 ramp capacity not yet confirmed
+
+# 
+
+# DECISIONS NEEDED
+
+# 
+
+# Sensor yield path: accept-with-binning vs. retune placement
+
+# (Owner: VP Engineering; Deadline: Monday EOD)
+
+# 
+
+# WINS THIS WEEK
+
+# 
+
+# Firmware download issue (DFM-017) root-caused; fix passing 50-unit soak test
+
+# Three P2 DFM issues closed (FPC routing, light pipe, housing color)
+
+# ENC-801 tooling delivery confirmed on schedule
+
+# First-pass PVT yield 94% (target 90%)
+
+# Station 4 throughput up 12% after torque driver recalibration
+
+# 
+
+# LOOKING AHEAD
+
+# 
+
+# Monday: sensor yield decision
+
+# Wednesday: MFG-007 supplier visit
+
+# Thursday: PVT gate review prep begins
+
+# 
+
+# Drafted by AI from PM source inputs. Review before sending.
+
+
+
+\## What's in This Repo
+
 status-synthesizer/
-├── README.md                   # This file
-├── flow/
-│   ├── flow_overview.md        # Step-by-step flow design
-│   └── flow_export.json        # (placeholder) Power Automate flow export
-├── prompts/
-│   ├── classify_prompt.md      # Workstream classification prompt
-│   ├── synthesize_prompt.md    # Structured synthesis prompt
-│   └── render_prompt.md        # Audience-specific rendering prompt
-├── samples/
-│   ├── inputs/                 # Synthetic weekly inputs
-│   └── outputs/                # Generated outputs (3 audiences)
-└── docs/
-    ├── prompt_iteration_log.md # What I tried, what broke, what changed
-    └── failed_approaches.md    # Honest log of dead ends
-```
+===
 
-## How to Build This Yourself
+# ├── README.md
 
-See `flow/flow_overview.md` for the step-by-step Power Automate setup. Roughly:
+# ├── requirements.txt
 
-1. Set up OneDrive folder structure under your account
-2. Create the Power Automate flow with the trigger of your choice (manual button, scheduled, or file-added)
-3. Use the prompt templates in `prompts/` as the AI Builder GPT prompt content
-4. Configure the output Word doc template
-5. Test against the synthetic samples in `samples/inputs/`
+# ├── src/
 
-Estimated build time: 60-90 minutes if you're familiar with Power Automate.
+# │   ├── synthesize.py         # 3-stage AI pipeline
 
-## Why I Built This
+# │   └── streamlit\_app.py      # Interactive demo UI
 
-I previously used PPM PRO and Power BI dashboards at a semiconductor company to track NPI status, and the gap between data we collected and the weekly story we told was always the bottleneck. This workflow closes that gap by treating "the weekly story" as a synthesis problem the AI handles, while the data layer stays in the systems of record.
+# ├── prompts/
 
-## Honest Limitations
+# │   ├── classify\_prompt.md    # Workstream classification prompt
 
-- Sample inputs are synthetic; real meeting notes from real PMs would have different shape and noise.
-- The flow assumes English source content. Multilingual workstreams would require additional handling.
-- AI Builder GPT prompt action has token limits; very long input weeks need a chunking pre-step.
-- Tone calibration is via prompt, not fine-tuning. A real org would build a feedback loop where edited outputs train the next version.
+# │   ├── synthesize\_prompt.md  # Structured synthesis prompt
 
----
+# │   └── render\_prompt.md      # Audience-specific rendering prompt
 
-**Built by Sabeela [Last Name]** | [LinkedIn](https://linkedin.com/in/...) | [Portfolio](https://...)
+# ├── samples/
+
+# │   ├── inputs/               # Synthetic weekly inputs
+
+# │   └── outputs/              # Generated outputs (3 audiences)
+
+# ├── flow/
+
+# │   └── flow\_overview.md      # Reference: porting to Power Automate
+
+# └── docs/
+
+└── failed\_approaches.md  # Honest log of design dead ends
+
+## How to Run This Yourself
+===
+
+# 
+
+# ```bash
+
+# \# Clone and install
+
+# git clone https://github.com/sabeelafatima/status-synthesizer.git
+
+# cd status-synthesizer
+
+# pip install -r requirements.txt
+
+# 
+
+# \# (Optional) Set Claude API key for full AI mode
+
+# export ANTHROPIC\_API\_KEY="your\_key\_here"
+
+# 
+
+# \# Run the pipeline
+
+# python src/synthesize.py
+
+# 
+
+# \# Run interactive Streamlit demo
+
+# streamlit run src/streamlit\_app.py
+
+# ```
+
+# 
+
+# \## Why Python Instead of Power Automate
+
+# 
+
+# The original design called for Power Automate + AI Builder. I switched to Python because:
+
+# 
+
+# 1\. \*\*Portability\*\*: Python + Claude API runs on any environment. Power Automate ties the workflow to a Microsoft tenant with AI Builder credits.
+
+# 2\. \*\*Defensibility\*\*: a deployed Python demo URL is easier to share than a Power Automate flow screenshot.
+
+# 3\. \*\*Architecture is portable\*\*: the prompts, classification logic, and audience templates ported directly. Anyone with AI Builder credits can recreate this in Power Automate using `flow/flow\_overview.md`.
+
+# 
+
+# The end product is functionally equivalent. The trade-off is Microsoft ecosystem signal vs. shareable demo. For a portfolio prototype, the demo wins.
+
+# 
+
+# \## Honest Limitations
+
+# 
+
+# \- Sample inputs are synthetic; real PM inputs would have more shape and noise.
+
+# \- The pipeline assumes English source content.
+
+# \- Mock mode (deterministic fallback) demonstrates the architecture without AI; full AI mode requires an API key.
+
+# \- Tone calibration is via prompt, not fine-tuning. A production version would build a feedback loop where edited outputs train the next iteration.
+
+# 
+
+# \---
+
+# 
+
+\*\*Built by Sabeela Fatima\*\* | \[GitHub](https://github.com/sabeelafatima) | \[Live Demo](https://sabeela-status-synthesize.streamlit.app/)
+
+
+===
+
