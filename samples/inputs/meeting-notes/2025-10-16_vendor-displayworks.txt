@@ -1,0 +1,15 @@
+Meeting: Vendor Sync - DisplayWorks (MFG-011)
+Date: 2025-10-16
+Attendees: Sabeela (PM), Procurement (Karen), DisplayWorks rep (Hiro)
+
+Updates:
+- PVT volume on track. All units shipped per schedule.
+- Q1 ramp capacity confirmation: still pending. Hiro said decision from their side expected within 2 weeks.
+- Quality: 2 escape incidents in last 60 days, both addressed with revised inspection protocol.
+
+Risks discussed:
+- If Q1 capacity not confirmed by 2025-11-15, we may need to qualify a second display source. Karen estimates 8-week qual cycle if we start now.
+
+Action items:
+- Karen: follow up with DisplayWorks on capacity by 2025-10-30
+- Sabeela: tee up second-source decision discussion for Nov 1 PMO

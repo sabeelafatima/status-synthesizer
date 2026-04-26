@@ -1,0 +1,19 @@
+Meeting: Manufacturing Review
+Date: 2025-10-17
+Attendees: Lin (Mfg Eng), Sabeela (PM), Process Eng team
+
+Updates:
+- 3 P2 DFM issues closed this week:
+  - DFM-007 (FPC routing): redesign verified on rebuilt units
+  - DFM-019 (light pipe interference with C42): verified
+  - DFM-016 (housing color variation batch 2025-09-15): within Pantone tolerance, accepted
+- DFM-005 (BGA wetting on IC-101): Zone 4 reflow temp variance investigation continuing. Lin's team narrowing it to a thermocouple calibration issue.
+- ENC-801 tooling delivery confirmed for next Wednesday.
+
+Wins:
+- First-pass yield at PVT pilot was 94%, beat the 90% target.
+- Test station 4 throughput up 12% after torque driver recalibration.
+
+Action items:
+- Lin: Zone 4 thermocouple recal scheduled for next week
+- Process eng: document station 4 changes in SOP

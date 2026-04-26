@@ -1,0 +1,17 @@
+Meeting: Engineering Weekly Sync
+Date: 2025-10-14
+Attendees: Priya (EE Lead), Marco (FW Lead), James (ME Lead), Sabeela (PM)
+
+Updates:
+- Priya: SoC firmware download issue (DFM-017) root cause confirmed. Boot ROM timing edge case. Marco's team has fix in test.
+- Marco: FW fix verified on 20 units. Will run extended soak test through weekend. Targeting close by Tuesday.
+- James: Battery seating tolerance (DFM-010) - foam vendor sample arriving Friday. Will validate before Monday.
+- Priya: Sensor yield (DFM-013) at 91%, target 97%. Investigation pointing to placement accuracy at station 3. Two options: accept current yield with binning, or pause and retune placement equipment (1 week impact).
+
+Decisions:
+- Need PM + VP Eng decision on sensor yield path by Monday EOD.
+
+Action items:
+- Marco: complete FW soak by Tuesday
+- James: foam sample validation by Monday
+- Sabeela: schedule sensor yield decision meeting Friday

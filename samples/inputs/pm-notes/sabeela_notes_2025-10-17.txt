@@ -1,0 +1,26 @@
+PM Notes - Sabeela - week of 2025-10-13
+
+Things I want in the report:
+- PVT build kicked off, 47/50 to spec - lead with this
+- Sensor yield is THE schedule risk this week - decision needed Monday
+- MFG-007 visit being set up - good Tomasz is driving
+- Three P2 DFM closures this week - worth highlighting
+- FW fix root caused and in test - solid win for Marco's team
+- ENC-801 tooling on schedule - quietly good news, removes a risk
+- DisplayWorks capacity outstanding - watch list, not panic yet
+
+Things I do NOT want in the exec report:
+- The internal Slack debate about test fixture changes (resolved, not exec-relevant)
+- Specific Cpk numbers (eng-leads version yes, exec version no)
+- The fact that I had to push hard for the MFG-007 visit (internal)
+
+Decisions I cannot make alone:
+- Sensor yield path - VP Eng owns
+- Second-source display qual cycle - needs procurement + eng alignment
+
+Watch items for next week:
+- Sensor yield decision result
+- MFG-007 visit outcome
+- DisplayWorks capacity confirmation
+- FW fix close-out
+- DFM-005 BGA wetting investigation

@@ -1,0 +1,17 @@
+Meeting: Exec Checkin - Project Atlas
+Date: 2025-10-17
+Attendees: VP Engineering (David), VP Operations (Reema), Sabeela (PM)
+
+Discussion:
+- Sabeela briefed on PVT pilot status: 47/50 units to spec, sensor yield issue
+- David: wants the sensor yield decision by Monday EOD. Owns the decision.
+- Reema: concerned about MFG-007 supplier risk. Wants to see action plan post-visit.
+- Discussed: ENC-801 tooling delivery on track is good news, takes one risk off the board.
+
+Decisions made today:
+- Continue PVT build through next week regardless of sensor yield path
+- David is decision owner for sensor yield (accept-with-binning vs. retune)
+
+Action items:
+- Sabeela: schedule David for sensor yield decision by Monday EOD
+- Reema: brief executive team on MFG-007 plan after Wednesday visit

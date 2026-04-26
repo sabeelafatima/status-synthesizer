@@ -1,0 +1,21 @@
+Meeting: PVT Build Kickoff
+Date: 2025-10-15
+Attendees: Sabeela (PM), James (ME), Priya (EE), Lin (Mfg Eng), Tomasz (Quality)
+
+Build status:
+- 50 units kitted, 47 built to spec on first pass
+- 3 units held for SEN-301 placement rework (related to DFM-013 yield investigation)
+- All other stations green on first pass
+
+Quality observations:
+- Tomasz flagged that supplier MFG-007 (EastBay Magnetics) had 4 quality escapes in last 60 days despite PPAP approved status. Recommends pull-in supplier visit.
+- DFM-014 (housing hinge fit) marked closed but resolution note in tracker just says "Closed". Tomasz wants verification before PVT gate.
+
+Decisions:
+- Build to continue. Sensor rework path TBD pending Eng+PM Friday meeting.
+- Tomasz to coordinate MFG-007 supplier visit - aim for next week.
+
+Action items:
+- Tomasz: schedule MFG-007 visit
+- James: clarify DFM-014 closure with original owner
+- Lin: capture station 3 placement data for DFM-013 root cause

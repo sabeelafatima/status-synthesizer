@@ -1,0 +1,13 @@
+ticket_id,title,workstream,status,priority,assignee,opened,last_update
+DFM-005,BGA wetting Zone 4 reflow,Manufacturing,Open,P2,Process-Eng-C,2025-08-05,2025-10-17
+DFM-007,FPC routing strain at connector,Mechanical,Closed,P2,ME-Lead-A,2025-08-12,2025-10-17
+DFM-010,Battery seating tolerance,Mechanical,Open,P2,ME-Lead-A,2025-08-22,2025-10-15
+DFM-013,Sensor SEN-301 yield 91%,Manufacturing,Open,P1,Process-Eng-C,2025-09-05,2025-10-17
+DFM-014,Housing hinge fit issue,Mechanical,Closed,P2,ME-Lead-A,2025-09-08,2025-09-22
+DFM-016,Housing color variation,Cosmetic,Closed,P3,ME-Lead-A,2025-09-15,2025-10-17
+DFM-017,SoC firmware download fail 2.1%,Test,Open,P1,Test-Lead-B,2025-09-18,2025-10-16
+DFM-019,Light pipe interference with C42,Mechanical,Closed,P2,ME-Lead-A,2025-09-25,2025-10-17
+PROC-201,DisplayWorks Q1 capacity,Vendor,Open,P2,Karen,2025-10-01,2025-10-16
+PROC-202,MFG-007 quality review,Vendor,Open,P1,Tomasz,2025-10-15,2025-10-17
+PROC-203,ENC-801 tooling delivery,Vendor,Open,P2,Karen,2025-09-20,2025-10-17
+TEST-301,FW download fix soak test,Test,Open,P1,Marco,2025-10-15,2025-10-17

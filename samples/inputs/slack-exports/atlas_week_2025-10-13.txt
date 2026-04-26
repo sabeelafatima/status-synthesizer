@@ -1,0 +1,20 @@
+# Slack export - Project Atlas channels - week of 2025-10-13
+
+## #atlas-eng
+[2025-10-14 09:32] Marco: FW download bug repro confirmed. Checking boot ROM timing per Priya's note.
+[2025-10-14 14:15] Priya: Marco found it. Boot ROM init timing race. Fix in branch.
+[2025-10-15 11:02] Marco: 20 units running soak overnight with the fix.
+[2025-10-16 08:45] Marco: 20/20 passed soak. Extending to 50 units through weekend before close.
+[2025-10-17 16:20] Priya: Sensor yield investigation - I'm 80% confident it's placement accuracy at station 3. Camera calibration data shows drift.
+
+## #atlas-mfg
+[2025-10-14 13:00] Lin: Station 4 throughput up after the torque recal. Numbers look real, not noise.
+[2025-10-15 10:30] Lin: PVT pilot at 47/50 first pass. 3 held for sensor rework decision.
+[2025-10-16 15:45] Lin: ENC-801 tooling on schedule. Verified with FormFlex this morning.
+[2025-10-17 09:10] Tomasz: Quick update - DFM-014 closure verification with James. Will close out by EOW.
+
+## #atlas-suppliers
+[2025-10-14 16:30] Karen: DisplayWorks Q1 capacity still pending. Pushing for answer by month end.
+[2025-10-15 11:45] Tomasz: MFG-007 visit being set up for Wednesday. Will pull quality history before going.
+[2025-10-16 14:20] Karen: Heads up - if MFG-011 capacity doesn't land by mid-Nov, we need to talk second-source.
+[2025-10-17 17:00] Sabeela: Adding MFG-011 second-source to Nov 1 PMO agenda.
