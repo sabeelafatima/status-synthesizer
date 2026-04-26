@@ -3,7 +3,7 @@
 > A Power Automate + AI Builder workflow that synthesizes scattered weekly inputs into structured executive status reports for cross-functional program management.
 
 **Status**: v1 prototype, active build
-**Author**: Sabeela [Last Name]
+**Author**: Sabeela Fatima
 **Stack**: Power Automate, AI Builder (GPT prompt action), Microsoft 365 (OneDrive, Outlook, Teams)
 
 ---
@@ -162,4 +162,4 @@ I previously used PPM PRO and Power BI dashboards at a semiconductor company to 
 
 ---
 
-**Built by Sabeela [Last Name]** | [LinkedIn](https://linkedin.com/in/...) | [Portfolio](https://...)
+**Built by Sabeela Fatima.** | [LinkedIn](https://linkedin.com/in/sabeela-fatima.) | 
